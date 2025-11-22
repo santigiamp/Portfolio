@@ -1,0 +1,84 @@
+-- Crear esquema para el data warehouse
+CREATE SCHEMA IF NOT EXISTS dw;
+
+-- Dimensión Tiempo
+CREATE TABLE dw.dim_tiempo (
+    id_tiempo SERIAL PRIMARY KEY,
+    fecha DATE NOT NULL UNIQUE,
+    dia INTEGER NOT NULL,
+    mes INTEGER NOT NULL,
+    año INTEGER NOT NULL,
+    trimestre INTEGER NOT NULL,
+    semestre INTEGER NOT NULL,
+    nombre_mes VARCHAR(20),
+    nombre_dia_semana VARCHAR(20),
+    es_fin_semana BOOLEAN,
+    semana_anio INTEGER
+);
+
+-- Dimensión Cliente
+CREATE TABLE dw.dim_cliente (
+    id_cliente INTEGER PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefono VARCHAR(20),
+    direccion TEXT
+);
+
+-- Dimensión Producto
+CREATE TABLE dw.dim_producto (
+    id_producto INTEGER PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio NUMERIC(10,2) NOT NULL,
+    stock INTEGER DEFAULT 0,
+    id_categoria INTEGER,
+    nombre_categoria VARCHAR(100),
+    id_proveedor INTEGER,
+    nombre_proveedor VARCHAR(100)
+);
+
+-- Dimensión Empleado
+CREATE TABLE dw.dim_empleado (
+    id_empleado INTEGER PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    puesto VARCHAR(50),
+    fecha_contratacion DATE
+);
+
+-- Dimensión Ubicación (opcional, basada en dirección del cliente)
+CREATE TABLE dw.dim_ubicacion (
+    id_ubicacion SERIAL PRIMARY KEY,
+    ciudad VARCHAR(100),
+    region VARCHAR(100),
+    pais VARCHAR(100) DEFAULT 'México'
+);
+
+-- Tabla de Hechos: Ventas
+CREATE TABLE dw.hechos_ventas (
+    id_hecho SERIAL PRIMARY KEY,
+    id_tiempo INTEGER REFERENCES dw.dim_tiempo(id_tiempo),
+    id_cliente INTEGER REFERENCES dw.dim_cliente(id_cliente),
+    id_producto INTEGER REFERENCES dw.dim_producto(id_producto),
+    id_empleado INTEGER REFERENCES dw.dim_empleado(id_empleado),
+    id_ubicacion INTEGER REFERENCES dw.dim_ubicacion(id_ubicacion),
+    
+    -- Métricas de venta
+    cantidad_vendida INTEGER NOT NULL,
+    precio_unitario NUMERIC(10,2) NOT NULL,
+    total_venta NUMERIC(10,2) NOT NULL,
+    costo_unitario NUMERIC(10,2),
+    margen_ganancia NUMERIC(10,2),
+    
+    -- Métricas de pedido
+    id_pedido INTEGER,
+    estado_pedido VARCHAR(20),
+    fecha_entrega DATE,
+    dias_entrega INTEGER
+);
+
+-- Índices para mejor performance
+CREATE INDEX idx_hechos_tiempo ON dw.hechos_ventas(id_tiempo);
+CREATE INDEX idx_hechos_cliente ON dw.hechos_ventas(id_cliente);
+CREATE INDEX idx_hechos_producto ON dw.hechos_ventas(id_producto);
+CREATE INDEX idx_hechos_empleado ON dw.hechos_ventas(id_empleado);
+CREATE INDEX idx_dim_tiempo_fecha ON dw.dim_tiempo(fecha);
