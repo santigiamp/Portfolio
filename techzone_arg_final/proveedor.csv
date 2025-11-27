@@ -1,0 +1,51 @@
+﻿id_proveedor,nombre,contacto,telefono,email
+1,Grupo Núcleo S.A.,Joaquin Alvarez,+54 15 2788 5160,contacto@grupo.com.ar
+2,Air Computers S.A.,Malena Rodriguez Sanchez,+54 9 3196 6416,contacto@air.com.ar
+3,Stylus S.A.,Joaquin Abigail Medina Ledesma,+54 9 3716 1369,contacto@stylus.com.ar
+4,Elit S.A.,Sr(a). Camila Sanchez,+54 9 3935 2181,contacto@elit.com.ar
+5,Intermaco S.A.,Sr(a). Mia Morena Sosa,+54 15 2331 2432,contacto@intermaco.com.ar
+6,Solution Box S.A.,Joaquin Ramos Aguirre,+54 9 3299 5527,contacto@solution.com.ar
+7,Pc Arts S.A.,Simon Sanchez,+54 9 3890 5814,contacto@pc.com.ar
+8,Invid S.A.,Martina Torres,+54 9 3811 9986,contacto@invid.com.ar
+9,Masnet S.A.,Sr(a). Tomàs Correa,+54 15 2859 7820,contacto@masnet.com.ar
+10,Correa LLC Arg,Juan Bautista Lopez Martinez,+54 9 3678 8925,contacto@correa.com.ar
+11,Alvarez-Ramos Arg,Sr(a). Francesco Moreno,+54 15 2351 8644,contacto@alvarez-ramos.com.ar
+12,Rodriguez-Dominguez Arg,Josefina Ambar Dominguez Fernandez,+54 15 2248 6528,contacto@rodriguez-dominguez.com.ar
+13,"Carrizo, Gimenez and Gonzalez Arg",Joaquin Delfina Duarte Suarez,+54 15 2922 1418,"contacto@carrizo,.com.ar"
+14,"Cruz, Gonzalez and Romero Arg",Sr(a). Matias Fernandez,+54 15 2492 7065,"contacto@cruz,.com.ar"
+15,Cabrera-Cardozo Arg,Francisco Martinez,+54 9 3735 9774,contacto@cabrera-cardozo.com.ar
+16,"Pereyra, Martin and Maldonado Arg",Sr(a). Francisca Rodriguez,+54 9 3258 1814,"contacto@pereyra,.com.ar"
+17,Perez PLC Arg,Ludmila Catalina Bustos,+54 9 3650 6068,contacto@perez.com.ar
+18,Alvarez Inc Arg,Francisco Juan Cruz Gomez Vera,+54 9 3822 0472,contacto@alvarez.com.ar
+19,Cabrera-Barrios Arg,Valentina Miranda Molina,+54 9 3414 3410,contacto@cabrera-barrios.com.ar
+20,Godoy-Rios Arg,Santino Barrios Luna,+54 15 2189 3246,contacto@godoy-rios.com.ar
+21,"Sosa, Ortiz and Lopez Arg",Bruno Sosa Moyano,+54 15 2167 0654,"contacto@sosa,.com.ar"
+22,Caceres-Romero Arg,Thiago Nahuel Ponce Romero,+54 15 2358 5277,contacto@caceres-romero.com.ar
+23,Rodriguez Group Arg,Juana Gonzalez Diaz,+54 15 2554 8687,contacto@rodriguez.com.ar
+24,Navarro and Sons Arg,Benicio Fausto Aguero Romero,+54 15 2356 6765,contacto@navarro.com.ar
+25,Ledesma-Torres Arg,Dr(a). Juan Ojeda,+54 15 2269 2845,contacto@ledesma-torres.com.ar
+26,Romero LLC Arg,Tomàs Lucio Lopez Acosta,+54 9 3205 9640,contacto@romero.com.ar
+27,"Godoy, Torres and Figueroa Arg",Benjamin Alejandro Felipe Cabrera,+54 9 3702 1355,"contacto@godoy,.com.ar"
+28,"Gonzalez, Fernandez and Acosta Arg",Thiago Paulina Silva Pereyra,+54 9 3854 3102,"contacto@gonzalez,.com.ar"
+29,"Alvarez, Castro and Perez Arg",Federico Delfina Cabrera Ledesma,+54 9 3831 2172,"contacto@alvarez,.com.ar"
+30,Correa LLC Arg,Paloma Nicolas Garcia Garcia,+54 15 2325 8313,contacto@correa.com.ar
+31,Arias Inc Arg,Nicolas Guadalupe Cordoba Molina,+54 15 2714 6786,contacto@arias.com.ar
+32,"Rodriguez, Valdez and Moreno Arg",Valentin Gutierrez,+54 15 2189 2268,"contacto@rodriguez,.com.ar"
+33,Gutierrez LLC Arg,Mateo Lucas Benjamin Martinez,+54 9 3514 3842,contacto@gutierrez.com.ar
+34,"Rojas, Gimenez and Lopez Arg",Sr(a). Joaquin Morales,+54 9 3590 0109,"contacto@rojas,.com.ar"
+35,"Diaz, Silva and Rios Arg",Guillermina Morales Garcia,+54 9 3173 6471,"contacto@diaz,.com.ar"
+36,Benitez Group Arg,Sofia Juarez,+54 9 3955 6258,contacto@benitez.com.ar
+37,Sanchez Group Arg,Thiago Benjamin Martinez Gomez,+54 9 3669 6325,contacto@sanchez.com.ar
+38,Coronel Group Arg,Dr(a). Guillermina Sanchez,+54 15 2616 8733,contacto@coronel.com.ar
+39,Rodriguez Group Arg,Dr(a). Emilia Gonzalez,+54 15 2162 4565,contacto@rodriguez.com.ar
+40,Rodriguez-Castro Arg,Nicolas Bautista Gimenez Coronel,+54 9 3699 1216,contacto@rodriguez-castro.com.ar
+41,Castro-Torres Arg,Sofia Bianca Gimenez,+54 15 2302 5787,contacto@castro-torres.com.ar
+42,"Escobar, Fernandez and Soria Arg",Mateo Dylan Ezequiel Villalba Garcia,+54 9 3888 8794,"contacto@escobar,.com.ar"
+43,Torres Ltd Arg,Giovanni Nuñez Figueroa,+54 15 2197 4993,contacto@torres.com.ar
+44,"Suarez, Pereyra and Muñoz Arg",Felipe Peralta,+54 15 2791 3075,"contacto@suarez,.com.ar"
+45,Ramirez and Sons Arg,Juan Bautista Cabrera,+54 9 3802 8385,contacto@ramirez.com.ar
+46,"Alvarez, Campos and Medina Arg",Dr(a). Manuel Peralta,+54 9 3597 3348,"contacto@alvarez,.com.ar"
+47,Acuña LLC Arg,Federico Helena Aguirre Suarez,+54 9 3641 9866,contacto@acuña.com.ar
+48,Garcia LLC Arg,Lautaro Benitez Perez,+54 9 3333 8484,contacto@garcia.com.ar
+49,Cabrera PLC Arg,Emma Valentina  Pereyra,+54 15 2301 6571,contacto@cabrera.com.ar
+50,Soto and Sons Arg,Jeremias Lucero,+54 9 3273 4540,contacto@soto.com.ar
