@@ -75,20 +75,37 @@ class ETLProcessor:
         df_fechas['semana_anio'] = df_fechas['fecha_date'].dt.isocalendar().week.astype(int)
         
         return df_fechas
-
+   
     def transform_dim_ubicacion(self, df_clientes):
-        # Lógica simplificada para extraer ubicación de la dirección
-        ubicaciones = df_clientes[['direccion']].drop_duplicates().copy()
+        """
+        Crea dim_ubicacion basada en la dirección única de los clientes.
         
-        # Aquí asumimos que todos son de una ubicación genérica si no se puede parsear
-        # Esto evita perder clientes por falta de datos geográficos exactos
-        ubicaciones['ciudad'] = 'Desconocida'
+        NOTA: En un ETL real, se usaría un parser de direcciones o una tabla de referencia
+        para extraer ciudad/región/país de forma confiable. Aquí usamos la dirección completa
+        como identificador de ubicación para mantener la granularidad.
+        """
+        # Seleccionar las columnas relevantes y manejar nulos
+        df = df_clientes[['id_cliente', 'direccion']].copy().dropna(subset=['direccion'])
+        
+        # Agrupar por dirección para generar IDs únicos
+        ubicaciones = df[['direccion']].drop_duplicates().reset_index(drop=True)
+        
+        # Asignar atributos (simplificado, pero ahora basado en el dato real)
+        ubicaciones['ciudad'] = 'Desconocida' # Requiere lógica de parseo avanzada
         ubicaciones['region'] = 'Desconocida'
         ubicaciones['pais'] = 'Argentina'
         
-        ubicaciones = ubicaciones[['ciudad', 'region', 'pais']].drop_duplicates().reset_index(drop=True)
+        # Generar el ID de Ubicación (Key Subrogada)
         ubicaciones['id_ubicacion'] = range(1, len(ubicaciones) + 1)
-        return ubicaciones
+        
+        # Crear un mapa para asignar el id_ubicacion a cada cliente
+        mapa_direccion_ubicacion = ubicaciones[['direccion', 'id_ubicacion']]
+        
+        # Guardamos este mapa como atributo para usarlo en hechos_ventas
+        self.mapa_clientes_ubicacion = df.merge(mapa_direccion_ubicacion, on='direccion', how='left')
+        
+        # Devolver solo las columnas de la dimensión para el Data Warehouse
+        return ubicaciones[['id_ubicacion', 'ciudad', 'region', 'pais']]
 
     def transform_dim_producto(self, df_productos, df_categorias, df_proveedores):
         df = df_productos.copy()
@@ -145,8 +162,17 @@ class ETLProcessor:
         df_base = df_base.merge(dim_tiempo[['fecha_date', 'id_tiempo']], 
                                 left_on='fecha_norm', right_on='fecha_date', how='left')
         
-        # Ubicación (Default id 1 para asegurar carga)
-        df_base['id_ubicacion'] = 1 
+        # Ubicación (APLICACIÓN DE LA MEJORA)
+        print("   > Asignando IDs de Ubicación (cliente)...")
+        if hasattr(self, 'mapa_clientes_ubicacion'):
+            # Mergear la tabla de hechos con el mapa precalculado (id_cliente -> id_ubicacion)
+            mapa = self.mapa_clientes_ubicacion[['id_cliente', 'id_ubicacion']].drop_duplicates()
+            df_base = df_base.merge(mapa, on='id_cliente', how='left')
+            # Si un cliente no tiene dirección o no se mapeó, usar la ubicación 1 (Desconocida)
+            df_base['id_ubicacion'] = df_base['id_ubicacion'].fillna(1).astype(int)
+        else:
+            # Fallback seguro (siempre debe existir la fila 1 en dim_ubicacion)
+            df_base['id_ubicacion'] = 1
         
         # 5. Cálculos Numéricos
         df_base['total_venta'] = df_base['cantidad'] * df_base['precio_unitario']
